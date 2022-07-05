@@ -11,7 +11,7 @@ Rubocop command line options to pass.
 ## Example usage
 
 ```yaml
-uses: dlebed/rubocop-run-action@v0.1
+uses: d-lebed/rubocop-run-action@v0.1
 with:
   options: --format=json --out=rubocop.json
 ```

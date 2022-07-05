@@ -13,7 +13,7 @@ FROM ruby:3.1.2-alpine
 WORKDIR /rubocop
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rubocop/* .
+COPY --from=build /rubocop/* /rubocop/
 
 COPY entrypoint.sh .
 
