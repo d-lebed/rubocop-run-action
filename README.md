@@ -16,12 +16,12 @@ This action runs rubocop with given options.
 | Name                | Default | Type    | Description |
 | ------------------- | ------- | ------- | ----------- |
 | `options`           |         | String  | Rubocop command line options to pass |
-| `preserve_exitcode` | True    | Boolean | Preserve rubocop exit code or alwaye finish successffuly |
+| `preserve_exitcode` | True    | Boolean | Preserve rubocop exit code or always finish successfully |
 
 ## Example usage
 
 ```yaml
-uses: d-lebed/rubocop-run-action@v0.1
+uses: d-lebed/rubocop-run-action@v0.3.0
 with:
   options: --format=json --out=rubocop.json
   preserve_exitcode: false

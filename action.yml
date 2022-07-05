@@ -15,6 +15,6 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://ghcr.io/d-lebed/rubocop-run-action:0.3.0"
   args:
     - ${{ inputs.options }}
