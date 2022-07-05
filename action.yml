@@ -1,0 +1,17 @@
+name: "Rubocop Run Action"
+description: "Runs Rubocop linter with given config"
+author: "dlebed"
+branding:
+  icon: "check-circle"
+  color: "black"
+
+inputs:
+  options:
+    description: "Rubocop command line options"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  command:
+    args:
+    - ${{ inputs.options }}
