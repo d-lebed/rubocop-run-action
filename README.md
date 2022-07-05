@@ -21,7 +21,7 @@ This action runs rubocop with given options.
 ## Example usage
 
 ```yaml
-uses: d-lebed/rubocop-run-action@v0.1
+uses: d-lebed/rubocop-run-action@v0.3.0
 with:
   options: --format=json --out=rubocop.json
   preserve_exitcode: false
