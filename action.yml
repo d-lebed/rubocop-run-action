@@ -8,6 +8,10 @@ branding:
 inputs:
   options:
     description: "Rubocop command line options"
+  preserve_exitcode:
+    description: "Preserve rubocop exit code"
+    type: "boolean"
+    default: true
 
 runs:
   using: "docker"
