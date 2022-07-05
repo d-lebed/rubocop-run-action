@@ -12,14 +12,6 @@ inputs:
     description: "Preserve rubocop exit code"
     type: "boolean"
     default: false
-  test_string:
-    description: "Test string"
-  test_first:
-    description: "Test first boolean"
-    type: "boolean"
-  test_other:
-    description: "Test other boolean"
-    type: "boolean"
 
 runs:
   using: "docker"
