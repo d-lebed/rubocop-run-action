@@ -3,4 +3,6 @@
 bundle exec rubocop $@
 EXITCODE=$?
 
-exit ($INPUT_PRESERVE_EXITCODE && $EXITCODE || 0)
+if $INPUT_PRESERVE_EXITCODE; then
+  exit $EXITCODE
+fi
