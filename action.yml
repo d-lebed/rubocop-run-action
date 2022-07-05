@@ -11,7 +11,7 @@ inputs:
   preserve_exitcode:
     description: "Preserve rubocop exit code"
     type: "boolean"
-    default: false
+    default: true
 
 runs:
   using: "docker"
