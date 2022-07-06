@@ -9,6 +9,7 @@ branding:
 inputs:
   options:
     description: "RuboCop command line options"
+    default: "--format=github"
   preserve_exitcode:
     description: "Preserve RuboCop exit code"
     type: "boolean"
