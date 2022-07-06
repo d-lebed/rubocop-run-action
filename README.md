@@ -58,10 +58,13 @@ steps:
     workdir: app_code
 
 - name: Post Review
-  run: >
-    reviewdog
-      -reporter=github-pr-review
-      -f=rdjson
+  env:
+    REVIEWDOG_GITHUB_API_TOKEN: ${{ github.token }}
+  run: |
+    reviewdog \
+      -reporter=github-pr-review \
+      -filter-mode=added \
+      -f=rdjson \
       < reviewdog-report.json
 ```
 
