@@ -17,6 +17,7 @@ This action runs RuboCop with given options.
 | ------------------- | ----------------- | ------- | ----------- |
 | `options`           | `--format=github` | String  | RuboCop command line options to pass |
 | `preserve_exitcode` | True              | Boolean | Preserve RuboCop exit code or always finish successfully |
+| `rdjson_formatter`  | False             | Boolean | Enable [Reviewdog](https://github.com/reviewdog/reviewdog) JSON formatter |
 | `workdir`           | `.`               | String  | From which directory to run RuboCop |
 
 ## Example usage
@@ -34,6 +35,37 @@ steps:
     options: --format=json --out=rubocop-report.json --format=github
     preserve_exitcode: false
     workdir: app_code
+```
+
+## Example usage with Reviewdog
+
+```yaml
+steps:
+- name: Checkout
+  uses: actions/checkout@v3
+  with:
+    path: app_code
+
+- name: Install Reviewdog
+  uses: reviewdog/action-setup@v1
+
+- name: Generate RuboCop report
+  uses: d-lebed/rubocop-run-action@v0.4.0
+  with:
+    options: --format=RdjsonFormatter --out=reviewdog-report.json --format=progress
+    rdjson_formatter: true
+    preserve_exitcode: false
+    workdir: app_code
+
+- name: Post Review
+  env:
+    REVIEWDOG_GITHUB_API_TOKEN: ${{ github.token }}
+  run: |
+    reviewdog \
+      -reporter=github-pr-review \
+      -filter-mode=added \
+      -f=rdjson \
+      < reviewdog-report.json
 ```
 
 ## Using with Docker Compose
