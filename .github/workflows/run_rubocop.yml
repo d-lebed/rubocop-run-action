@@ -1,0 +1,19 @@
+name: Run RuboCop
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+  pull_request:
+
+jobs:
+  build:
+    name: Run RuboCop
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run RuboCop
+        uses: d-lebed/rubocop-run-action@v0
