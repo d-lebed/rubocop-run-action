@@ -17,7 +17,7 @@ COPY --from=build /rubocop/* /rubocop/
 
 COPY entrypoint.sh .
 
-WORKDIR /github/home
+WORKDIR /code
 
 ENV BUNDLE_GEMFILE=/rubocop/Gemfile
 
