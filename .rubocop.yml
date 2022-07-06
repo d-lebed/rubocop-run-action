@@ -1,0 +1,13 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-performance
+  - standard
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  TargetRubyVersion: 3.1
