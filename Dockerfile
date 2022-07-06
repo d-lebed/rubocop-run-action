@@ -15,7 +15,8 @@ WORKDIR /rubocop
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rubocop/* /rubocop/
 
-COPY entrypoint.sh lib/ /rubocop/
+COPY entrypoint.sh /rubocop/
+COPY lib /rubocop/
 
 WORKDIR /code
 
