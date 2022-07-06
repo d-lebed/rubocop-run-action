@@ -29,7 +29,7 @@ steps:
     path: app_code
 
 - name: Generate RuboCop report
-  uses: d-lebed/rubocop-run-action@v0.3.0
+  uses: d-lebed/rubocop-run-action@v0.4.0
   with:
     options: --format=json --out=rubocop-report.json --format=github
     preserve_exitcode: false
