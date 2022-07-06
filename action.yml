@@ -1,5 +1,6 @@
-name: "Rubocop Run Action"
-description: "Runs Rubocop linter with given config"
+name: "RuboCop Run Action"
+
+description: "Runs RuboCop linter with given config"
 author: "d-lebed"
 branding:
   icon: "check-circle"
@@ -7,11 +8,13 @@ branding:
 
 inputs:
   options:
-    description: "Rubocop command line options"
+    description: "RuboCop command line options"
   preserve_exitcode:
-    description: "Preserve rubocop exit code"
+    description: "Preserve RuboCop exit code"
     type: "boolean"
     default: true
+  workdir:
+    description: "From which directory to run RuboCop"
 
 runs:
   using: "docker"
