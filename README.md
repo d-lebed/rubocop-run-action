@@ -13,11 +13,11 @@ This action runs RuboCop with given options.
 
 ## Inputs
 
-| Name                | Default | Type    | Description |
-| ------------------- | ------- | ------- | ----------- |
-| `options`           |         | String  | RuboCop command line options to pass |
-| `preserve_exitcode` | True    | Boolean | Preserve RuboCop exit code or always finish successfully |
-| `workdir`           | `.`     | String  | From which directory to run RuboCop |
+| Name                | Default           | Type    | Description |
+| ------------------- | ----------------- | ------- | ----------- |
+| `options`           | `--format=github` | String  | RuboCop command line options to pass |
+| `preserve_exitcode` | True              | Boolean | Preserve RuboCop exit code or always finish successfully |
+| `workdir`           | `.`               | String  | From which directory to run RuboCop |
 
 ## Example usage
 
@@ -31,7 +31,7 @@ steps:
 - name: Generate RuboCop report
   uses: d-lebed/rubocop-run-action@v0.3.0
   with:
-    options: --format=json --out=rubocop.json
+    options: --format=json --out=rubocop-report.json --format=github
     preserve_exitcode: false
     workdir: app_code
 ```
