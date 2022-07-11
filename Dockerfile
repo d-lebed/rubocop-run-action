@@ -1,19 +1,23 @@
-FROM ruby:3.1.2-alpine AS build
-
-RUN apk --no-cache add make g++
+FROM ruby:3.1.2-alpine
 
 WORKDIR /rubocop
 
 COPY Gemfile .
 
-RUN bundle install
+RUN apk add --no-cache --virtual .ruby-builddeps \
+        alpine-sdk \
+        cmake \
+        openssl \
+        openssl-dev \
+    ; \
+    bundle install --jobs 20 --retry 5 \
+    ; \
+    find /usr/local/bundle/cache/ -name "*.gem" -delete \
+    && find /usr/local/bundle/gems/ -type f \( -name "*.c" -o -name "*.o" \) -delete \
+    ; \
+    apk del --purge .ruby-builddeps
 
-FROM ruby:3.1.2-alpine
-
-WORKDIR /rubocop
-
-COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rubocop/* /rubocop/
+RUN apk add --no-cache jq
 
 COPY entrypoint.sh /rubocop/
 COPY lib /rubocop/lib

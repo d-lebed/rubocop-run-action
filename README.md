@@ -4,12 +4,20 @@ This action runs RuboCop with given options.
 
 ## Available plugins
 
+* standard
 * rubocop
 * rubocop-performance
-* rubocop-thread_safety
+* rubocop-i18n
+* rubocop-md
+* rubocop-minitest
 * rubocop-rails
+* rubocop-rake
+* rubocop-require_tools
 * rubocop-rspec
-* standard
+* rubocop-sequel
+* rubocop-thread_safety
+
+It also includes `pronto` and `pronto-rubocop` gems to be able to run pronto when necessarily.
 
 ## Inputs
 
