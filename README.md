@@ -38,7 +38,7 @@ steps:
     path: app_code
 
 - name: Generate RuboCop report
-  uses: d-lebed/rubocop-run-action@v0.5.0
+  uses: d-lebed/rubocop-run-action@v0.6.0
   with:
     options: --format=json --out=rubocop-report.json --format=github
     preserve_exitcode: false
@@ -58,7 +58,7 @@ steps:
   uses: reviewdog/action-setup@v1
 
 - name: Generate RuboCop report
-  uses: d-lebed/rubocop-run-action@v0.5.0
+  uses: d-lebed/rubocop-run-action@v0.6.0
   with:
     options: --format=RdjsonFormatter --out=reviewdog-report.json --format=progress
     rdjson_formatter: true
