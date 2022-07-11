@@ -38,7 +38,7 @@ steps:
     path: app_code
 
 - name: Generate RuboCop report
-  uses: d-lebed/rubocop-run-action@v0.6.0
+  uses: d-lebed/rubocop-run-action@v0.7.0
   with:
     options: --format=json --out=rubocop-report.json --format=github
     preserve_exitcode: false
@@ -58,7 +58,7 @@ steps:
   uses: reviewdog/action-setup@v1
 
 - name: Generate RuboCop report
-  uses: d-lebed/rubocop-run-action@v0.6.0
+  uses: d-lebed/rubocop-run-action@v0.7.0
   with:
     options: --format=RdjsonFormatter --out=reviewdog-report.json --format=progress
     rdjson_formatter: true
@@ -86,7 +86,7 @@ something like that to your docker-compose.yml
 
 services:
   rubocop:
-    image: ghcr.io/d-lebed/rubocop-run-action:latest
+    image: ghcr.io/d-lebed/rubocop-run-action:v0
     volumes:
       - .:/code
 
@@ -120,7 +120,7 @@ your SublimeLinter config:
         "${folder:$file_path}:${folder:$file_path}",
         "-w",
         "${folder:$file_path}",
-        "ghcr.io/d-lebed/rubocop-run-action:latest"
+        "ghcr.io/d-lebed/rubocop-run-action:v0"
       ]
     },
     "eslint": {
