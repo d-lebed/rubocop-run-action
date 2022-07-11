@@ -23,4 +23,4 @@ inputs:
 
 runs:
   using: "docker"
-  image: "docker://ghcr.io/d-lebed/rubocop-run-action:0.5.0"
+  image: "docker://ghcr.io/d-lebed/rubocop-run-action:0.6.0"
