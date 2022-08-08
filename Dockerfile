@@ -2,7 +2,7 @@ FROM ruby:3.1.2-alpine
 
 WORKDIR /rubocop
 
-COPY Gemfile .
+COPY Gemfile Gemfile.lock /rubocop/
 
 RUN apk add --no-cache --virtual .ruby-builddeps \
         alpine-sdk \

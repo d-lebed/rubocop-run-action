@@ -7,8 +7,8 @@ RUN apk add --no-cache \
         openssl-dev \
         jq
 
-WORKDIR /code
+WORKDIR /rubocop
 
-ENV BUNDLE_GEMFILE=/code/Gemfile
+ENV BUNDLE_GEMFILE=/rubocop/Gemfile
 
-CMD ["/code/entrypoint.sh"]
+CMD ["/rubocop/entrypoint.sh"]

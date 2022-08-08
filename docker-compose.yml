@@ -7,7 +7,7 @@ services:
       dockerfile: .dockerdev/Dockerfile
     volumes:
       - bundle:/usr/local/bundle
-      - .:/code
+      - .:/rubocop
 
   action:
     build:
