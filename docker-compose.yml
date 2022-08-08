@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: .dockerdev/Dockerfile
+    volumes:
+      - bundle:/usr/local/bundle
+      - .:/code
+
+  action:
+    build:
+      context: .
+
+volumes:
+  bundle:
