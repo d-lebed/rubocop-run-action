@@ -132,3 +132,60 @@ your SublimeLinter config:
 
 `"~/.rubocop.yml:/root/.rubocop.yml"` mount is optional. You can use it if you want to have default RuboCop config
 when files you lint are located not in your project directory.
+
+### VS Code
+
+It is possibe to use it in VS Code using [Linter](https://marketplace.visualstudio.com/items?itemName=fnando.linter)
+extension.
+
+After installing the extension add next linter configuration to your `settings.json`:
+
+```json
+"linter.linters":  {
+    "rubocop": {
+        "enabled": true,
+        "command": [
+            "docker",
+            "run",
+            "--rm",
+            "-i",
+            "-v",
+            "~/rubocop.yml:/root/.rubocop.yml",
+            "-v",
+            [
+                "$config",
+                "${config}:${rootDir}/.rubocop.yml"
+            ],
+            "-v",
+            "${rootDir}:${rootDir}",
+            "-w",
+            "$rootDir",
+            "ghcr.io/d-lebed/rubocop-run-action:latest",
+            [
+                "$lint",
+                "--format",
+                "json",
+                "--extra-details"
+            ],
+            [
+                "$debug",
+                "--debug"
+            ],
+            [
+                "$fixAll",
+                "--auto-correct-all",
+                "--stderr"
+            ],
+            [
+                "$fixCategory",
+                "--auto-correct-all",
+                "--only",
+                "$code",
+                "--stderr"
+            ],
+            "--stdin",
+            "$file"
+        ]
+    }
+}
+```
