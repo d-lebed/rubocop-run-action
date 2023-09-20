@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "standard", "~> 1.25.3", require: false
+gem "standard", "~> 1.31.1", require: false
 
 # Standard dependencies
 gem "rubocop", require: false
