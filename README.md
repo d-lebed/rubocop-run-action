@@ -138,54 +138,70 @@ when files you lint are located not in your project directory.
 It is possibe to use it in VS Code using [Linter](https://marketplace.visualstudio.com/items?itemName=fnando.linter)
 extension.
 
-After installing the extension add next linter configuration to your `settings.json`:
+Create wrapper script and put it somewhere in your PATH:
+
+```bash
+#!/usr/bin/env bash
+
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+    --config)
+    CONFIG="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --rootDir)
+    ROOT_DIR="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    --)
+    shift # past the double dash, to signify the end of options
+    REST_PARAMS="$@" # Collect remaining parameters into REST_PARAMS
+    break
+    ;;
+    *)
+    shift # past argument
+    ;;
+  esac
+done
+
+DOCKER_CMD="docker run --rm -i"
+
+if [[ -f "${HOME}/.rubocop.yml" ]]; then
+  DOCKER_CMD="${DOCKER_CMD} -v ${HOME}/.rubocop.yml:/root/.rubocop.yml"
+fi
+if [[ ! -z "${CONFIG}" ]]; then
+  DOCKER_CMD="${DOCKER_CMD} -v ${CONFIG}:${ROOT_DIR}/.rubocop.yml"
+fi
+
+DOCKER_CMD="${DOCKER_CMD} -v ${ROOT_DIR}:${ROOT_DIR} -w ${ROOT_DIR}"
+
+# Execute!
+$DOCKER_CMD ghcr.io/d-lebed/rubocop-run-action:latest $REST_PARAMS
+```
+
+Then add next linter configuration to your `settings.json`:
 
 ```json
-"linter.linters":  {
-    "rubocop": {
-        "enabled": true,
-        "command": [
-            "docker",
-            "run",
-            "--rm",
-            "-i",
-            "-v",
-            "~/rubocop.yml:/root/.rubocop.yml",
-            "-v",
-            [
-                "$config",
-                "${config}:${rootDir}/.rubocop.yml"
-            ],
-            "-v",
-            "${rootDir}:${rootDir}",
-            "-w",
-            "$rootDir",
-            "ghcr.io/d-lebed/rubocop-run-action:latest",
-            [
-                "$lint",
-                "--format",
-                "json",
-                "--extra-details"
-            ],
-            [
-                "$debug",
-                "--debug"
-            ],
-            [
-                "$fixAll",
-                "--auto-correct-all",
-                "--stderr"
-            ],
-            [
-                "$fixCategory",
-                "--auto-correct-all",
-                "--only",
-                "$code",
-                "--stderr"
-            ],
-            "--stdin",
-            "$file"
-        ]
-    }
+"linter.linters": {
+  "rubocop": {
+    "enabled": true,
+    "command": [
+      "docker-lint-rubocop",
+      ["$config", "--config", "$config"],
+      ["$rootDir", "--rootDir", "$rootDir"],
+      "--",
+      ["$lint", "--format", "json", "--extra-details"],
+      ["$config", "--config", "$config"],
+      ["$debug", "--debug"],
+      ["$fixAll", "--auto-correct-all", "--stderr"],
+      ["$fixCategory", "--auto-correct-all", "--only", "$code", "--stderr"],
+      "--stdin",
+      "$file"
+    ]
+  }
 }
 ```
