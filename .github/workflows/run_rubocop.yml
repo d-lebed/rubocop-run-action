@@ -1,10 +1,11 @@
+---
 name: Run RuboCop
 
 on:
   push:
     branches:
-    - main
-    - develop
+      - main
+      - develop
   pull_request:
 
 jobs:
