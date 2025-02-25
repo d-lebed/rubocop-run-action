@@ -2,7 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "standard", "~> 1.41", require: false
+gem "standard", ">= 1.45.0", require: false
+gem "standard-custom", require: false
+gem "standard-performance", require: false
 gem "rubocop", require: false
 
 # Rubocop extensions
@@ -21,7 +23,7 @@ gem "rubocop-thread_safety", require: false
 gem "rubocop-rails-omakase"
 
 # Pronto
-gem "pronto", require: false
+gem "pronto", ">= 0.11.3", require: false
 gem "pronto-rubocop", require: false
 
 # Pronto dependencies

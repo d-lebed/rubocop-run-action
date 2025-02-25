@@ -5,12 +5,15 @@ This action runs RuboCop with given options.
 ## Available plugins
 
 - standard
+- standard-custom
+- standard-performance
 - rubocop
-- rubocop-performance
 - rubocop-i18n
 - rubocop-md
 - rubocop-minitest
+- rubocop-performance
 - rubocop-rails
+- rubocop-rails-omakase
 - rubocop-rake
 - rubocop-require_tools
 - rubocop-rspec
@@ -33,7 +36,7 @@ It also includes `pronto` and `pronto-rubocop` gems to be able to run pronto whe
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
     with:
       path: app_code
 
@@ -50,7 +53,7 @@ steps:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v3
+    uses: actions/checkout@v4
     with:
       path: app_code
 

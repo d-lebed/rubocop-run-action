@@ -1,4 +1,4 @@
-FROM ruby:3.3.0-alpine
+FROM ruby:3.3.7-alpine
 
 WORKDIR /rubocop
 
