@@ -12,15 +12,13 @@ inputs:
     default: "--format=github"
   preserve_exitcode:
     description: "Preserve RuboCop exit code"
-    type: "boolean"
-    default: true
+    default: "true"
   rdjson_formatter:
     description: "Enables Reviewdog JSON formatter"
-    type: "boolean"
-    default: false
+    default: "false"
   workdir:
     description: "From which directory to run RuboCop"
 
 runs:
   using: "docker"
-  image: "docker://ghcr.io/d-lebed/rubocop-run-action:v0.13.0"
+  image: "docker://ghcr.io/d-lebed/rubocop-run-action:v0.14.0"
